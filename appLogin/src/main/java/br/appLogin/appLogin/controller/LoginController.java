@@ -41,8 +41,8 @@ public class LoginController {
 		Usuario usuarioLogado = ur.login(usuario.getEmail(), usuario.getSenha());
 		
 		if (usuarioLogado != null) {
-	        session.setAttribute("usuarioId", usuarioLogado.getId()); // SALVA o ID na sessão
-	        session.setAttribute("usuarioNome", usuarioLogado.getNome()); // opcional: salvar nome também
+	        session.setAttribute("usuarioId", usuarioLogado.getId());
+	        session.setAttribute("usuarioNome", usuarioLogado.getNome());
 	        return "redirect:/";
 	    }
 
@@ -68,7 +68,7 @@ public class LoginController {
 		
 		return "redirect:/login";
 	}
-	
+	// EXCLUIR USUARIO POR ID
 	@GetMapping("/usuario/excluir/{id}")
 	public String excluirUsuario(@PathVariable Long id) {
 		if(ur.existsById(id)) {
@@ -76,7 +76,7 @@ public class LoginController {
 		}
 		return "redirect:/usuarios";
 	}
-	
+	// LISTAR USUARIO POR ID
 	@GetMapping("/usuario/{id}")
 	public String consultaUsuario(@PathVariable Long id, Model model) {
 		Optional<Usuario> usuario = ur.findById(id);
@@ -88,7 +88,7 @@ public class LoginController {
 			return "erro";
 		}
 	}
-	
+	// LISTAR TODOS OS USUARIOS
 	@GetMapping("/usuarios")
 	public String ListarUsuarios(Model model) {
 		List<Usuario> usuarios = ur.findAll();

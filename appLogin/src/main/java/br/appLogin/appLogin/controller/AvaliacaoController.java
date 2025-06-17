@@ -36,8 +36,8 @@ public class AvaliacaoController {
             return "redirect:/login";
         }
 
-        model.addAttribute("carros", carroRepo.findAll()); // envia lista de carros para a view
-        return "avaliarcarro"; // mesmo nome da sua página atual
+        model.addAttribute("carros", carroRepo.findAll()); 
+        return "avaliarcarro"; 
     }
 
     @PostMapping("/avaliar")
@@ -47,44 +47,42 @@ public class AvaliacaoController {
                           HttpSession session) {
     	Long usuarioId = (long)session.getAttribute("usuarioId");
     	if (usuarioId == null) {
-    	        return "redirect:/login"; // força login se não estiver autenticado
+    	        return "redirect:/login"; 
     	    }
     	
     	
         Avaliacao avaliacao = new Avaliacao();
         avaliacao.setNota(nota);
         avaliacao.setComentario(comentario);
-
-        // Relacionamento com as entidades
         avaliacao.setUsuario(usuarioRepo.findById(usuarioId).orElse(null));
         avaliacao.setCarro(carroRepo.findById(carroId).orElse(null));
 
         avaliacaoRepo.save(avaliacao);
-        return "redirect:/"; // redireciona após avaliar
+        return "redirect:/"; 
     }
     
-    // ✅ Listar todas as avaliações
+    //Listar todas as avaliações
     @GetMapping("/avaliacoes")
     public String listarAvaliacoes(Model model) {
         List<Avaliacao> avaliacoes = avaliacaoRepo.findAll();
         model.addAttribute("avaliacoes", avaliacoes);
-        return "lista-avaliacoes"; // você deve criar essa view
+        return "lista-avaliacoes";
     }
 
-    // ✅ Buscar avaliação por ID
+    //Buscar avaliação por ID
     @GetMapping("/avaliacao/{id}")
     public String buscarPorId(@PathVariable Long id, Model model) {
         Optional<Avaliacao> avaliacao = avaliacaoRepo.findById(id);
         if (avaliacao.isPresent()) {
             model.addAttribute("avaliacao", avaliacao.get());
-            return "avaliacao-detalhes"; // você deve criar essa view
+            return "avaliacao-detalhes";
         } else {
             model.addAttribute("erro", "Avaliação não encontrada");
             return "erro";
         }
     }
 
-    // ✅ Excluir avaliação por ID
+    //Excluir avaliação por ID
     @GetMapping("/avaliacao/excluir/{id}")
     public String excluirAvaliacao(@PathVariable Long id) {
         if (avaliacaoRepo.existsById(id)) {
@@ -96,8 +94,8 @@ public class AvaliacaoController {
     
     @GetMapping("/logout")
     public String logout(HttpSession session) {
-        session.invalidate(); // Encerra a sessão
-        return "redirect:/login"; // Redireciona para tela de login
+        session.invalidate();
+        return "redirect:/login"; 
     }
     
     

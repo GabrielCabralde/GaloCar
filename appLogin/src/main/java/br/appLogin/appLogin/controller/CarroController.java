@@ -24,13 +24,13 @@ public class CarroController {
 
 	    @GetMapping("/carro/cadastro")
 	    public String exibirFormularioCadastro() {
-	        return "cadastrocarro"; // nome do HTML (src/main/resources/templates/cadastro-carro.html)
+	        return "cadastrocarro"; 
 	    }
 
 	    @PostMapping("/carro/cadastrar")
 	    public String cadastrarCarro(@ModelAttribute Carro carro) {
 	        carroRepo.save(carro);
-	        return "redirect:/"; // redireciona para página inicial após cadastro
+	        return "redirect:/"; 
 	    }
 	    
 	    // LISTAR TODOS OS CARROS
