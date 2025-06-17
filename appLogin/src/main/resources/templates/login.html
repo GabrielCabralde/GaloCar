@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+
+   <style>
+	
+
+.login-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px 30px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+.login-container h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+/* Form alinhado verticalmente */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Inputs com largura total, padding e bordas arredondadas */
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 1rem;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+/* Botão estilizado */
+button {
+  padding: 12px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #007BFF;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Link para cadastro */
+.register-link {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #007BFF;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
+
+/* Mensagem de login */
+#loginMessage {
+  margin-top: 15px;
+  text-align: center;
+  font-weight: 600;
+}
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1; /* Faz o conteúdo expandir e empurrar o rodapé para baixo */
+  padding: 20px;
+}
+
+/* Rodapé permanece igual */
+.footer {
+  background-color: #0e1a2b;;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-links {
+  margin-top: 10px;
+}
+
+.footer-links a {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #cce0ff;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fonte e fundo geral */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f1f5f9;
+  color: #1e293b;
+}
+
+/* Cabeçalho */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0e1a2b;
+  padding: 10px 30px;
+  height: 70px;
+  border-radius: 12px;
+  margin: 10px;
+}
+
+/* Logo */
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.brand-name {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.menu-right .login-button {
+  background-color: #ffffff;
+  color: #0e1a2b;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.menu-right .login-button:hover {
+  background-color: #d4d4d4;
+}
+
+/* Conteúdo principal */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 100px);
+  text-align: center;
+  padding: 20px;
+}
+
+.main-title {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #64748b;
+  margin-bottom: 30px;
+}
+
+/* Formulário de pesquisa */
+.search-form {
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px 0 0 8px;
+  font-size: 16px;
+}
+
+.search-button {
+  padding: 12px 24px;
+  background-color: #0e1a2b;
+  color: #fff;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #1f2e45;
+}
+
+
+  </style>
+  
+</head>
+
+<body>
+
+  <!-- Menu Superior -->
+  <header class="top-nav">
+  <div class="logo-container">
+    
+    <span class="brand-name">GaloCar</span>
+  </div>
+
+  <div class="menu-right">
+    <!-- Se o usuário estiver logado -->
+    <span th:if="${session.usuarioNome}">
+      <span style="margin-right: 10px;">Bem-vindo, <strong th:text="${session.usuarioNome}"></strong></span>
+      <a href="/logout" class="login-button">Sair</a>
+    </span>
+
+    <!-- Se o usuário NÃO estiver logado -->
+    <a th:if="${session.usuarioNome == null}" href="/login" class="login-button">Login</a>
+  </div>
+</header>
+
+<div class="login-container">
+  <h1>Login</h1>
+   <form method="post" action="/logar">
+    <input type="email" name="email" id="email" placeholder="Email" required />
+    <input type="password" name="senha" id="password" placeholder="Senha" required />
+    <button type="submit">Entrar</button>
+  </form>
+
+  <div id="loginMessage" style="margin-top: 10px; font-weight: bold;"></div>
+
+  <a href="/cadastro" class="register-link">Ainda não tenho cadastro</a>
+</div>
+
+
+ <body>
+  <div class="content">
+    <!-- Todo o conteúdo da página aqui -->
+  </div>
+
+<!-- Rodapé -->
+<footer class="footer">
+  <div class="footer-content">
+    <p>&copy; 2025 GaloCar. Todos os direitos reservados.</p>
+    <div class="footer-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="contato@galocar.com">Contato</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
